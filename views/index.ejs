@@ -1,1 +1,26 @@
-<h1>sup lol</h1>
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <link rel="stylesheet" href="css/style.css" type="text/css" >    
+</head>
+
+<body>
+    <h1>Tween</h1>
+    <h4><a href="/createpost">Create Post</a></h4>
+    <div class="tweengrid">
+        <% for (post in posts){ %>
+            <div class="tweengriditem">
+                <p>
+                    <%= posts[post].poster_username %>
+                </p>
+                <p>
+                    <%= posts[post].tween %>
+                </p>
+                <p>
+                    <%= posts[post].date %>
+                </p>
+            </div>
+            <% } %>
+    </div>
+</body>

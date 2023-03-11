@@ -25,16 +25,19 @@ async function userLogin(email, pw) {
 async function getPosts(userid) {
     let querystring = `select * from getposts where user_id =${userid}`
     let followlist = await query(querystring)
-    console.log(followlist)
-
+    return followlist
 }
-// getPosts(1)
+
+async function createPost(userid,content) {
+    let querystring = `insert into post (user_id,content) values (${userid},'${content}')`
+    await query(querystring)
+}
+
 (async () => {
 
     // await userLogin('aidan.r.christopher@gmail.com', 'A1dan123')
-    await getPosts(390)
-    // console.log("3", x)
-
-    // all of the script.... 
-
+    // await getPosts(390)
+    
 })();
+
+module.exports = {userLogin, getPosts, createPost}
