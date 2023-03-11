@@ -1,0 +1,10 @@
+.tweengrid {
+    display: grid;
+    grid-template-columns: 500px;
+    gap: 5px;
+}
+.tweengriditem {
+    border: 1px;
+    border-style: solid;
+    border-color: black;
+}
