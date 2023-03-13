@@ -1,23 +1,15 @@
-<head>
-    <title>
-        <%= title %>
-    </title>
-    <link rel="stylesheet" href="css/style.css" type="text/css" >    
-</head>
-
 <body>
-    <h1>Tween</h1>
     <h4><a href="/createpost">Create Post</a></h4>
-    <div class="tweengrid">
+    <div class="tweengrid ">
         <% for (post in posts){ %>
-            <div class="tweengriditem">
-                <p>
+            <div class="tweengriditem rounded ">
+                <a href="/user/<%= posts[post].poster_id %>" id="tweenusername">
                     <%= posts[post].poster_username %>
-                </p>
-                <p>
+                </a>
+                <p id="tweencontent">
                     <%= posts[post].tween %>
                 </p>
-                <p>
+                <p id="tweendate">
                     <%= posts[post].date %>
                 </p>
             </div>

@@ -1,4 +1,5 @@
 var mysql = require('mysql2');
+var bcrypt = require('bcrypt')
 require('dotenv').config();
 
 
@@ -16,10 +17,17 @@ async function query(q) {
     return rows
 }
 
+//FUNCTIONS
+
 async function userLogin(email, pw) {
-    let querystring = `SELECT * FROM user where email='${email}' and password='${pw}'`
-    let output = await query(querystring)
-    return output
+    let possibleUserHash = await query(`SELECT hash FROM user where email='${email}'`)
+    let isMatch = await bcrypt.compare(pw,possibleUserHash[0].hash)
+    if (isMatch){
+        return await query(`SELECT user_id,first_name,last_name,email,username,dob,join_date FROM user where email='${email}'`)
+    }
+    else {
+        return false
+    }
 }
 
 async function getPosts(userid) {
@@ -35,9 +43,8 @@ async function createPost(userid,content) {
 
 (async () => {
 
-    // await userLogin('aidan.r.christopher@gmail.com', 'A1dan123')
-    // await getPosts(390)
-    
+    // console.log(await userLogin("aidan.r.christopher@gmail.com","A1dan123"))
+
 })();
 
 module.exports = {userLogin, getPosts, createPost}
