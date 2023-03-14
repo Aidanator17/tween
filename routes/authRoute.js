@@ -12,7 +12,7 @@ router.get('/', forwardAuthenticated, (req, res) => {
 
 router.get('/login', forwardAuthenticated, (req, res) => {
   // render a view using EJS
-  console.log(req.session.messages)
+//   console.log(req.session.messages)
   res.render('login',{title:"Login"});
 });
 

@@ -42,7 +42,7 @@ async function getPosts(userid) {
 
 async function createPost(userid,content) {
     // console.log("createPost function hit!")
-    let querystring = `insert into post (user_id,content) values (${userid},'${content}')`
+    let querystring = `insert into post (user_id,content) values (${userid},"${content}")`
     await query(querystring)
 }
 
@@ -54,8 +54,7 @@ async function getUserById(id) {
 
 (async () => {
 
-    // console.log(await userLogin("aidan.r.christopher@gmail.com","A1dan123"))
-    // console.log(await getUserById(1))
+    
 
 })();
 
