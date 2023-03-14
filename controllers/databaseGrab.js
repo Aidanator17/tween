@@ -13,6 +13,7 @@ var pool = mysql.createPool({
 const promisePool = pool.promise();
 
 async function query(q) {
+    // console.log("query function hit!")
     let [rows,fields] = await promisePool.query(q);
     return rows
 }
@@ -20,10 +21,12 @@ async function query(q) {
 //FUNCTIONS
 
 async function userLogin(email, pw) {
+    // console.log("userLogin function hit!")
     let possibleUserHash = await query(`SELECT hash FROM user where email='${email}'`)
     let isMatch = await bcrypt.compare(pw,possibleUserHash[0].hash)
     if (isMatch){
-        return await query(`SELECT user_id,first_name,last_name,email,username,dob,join_date FROM user where email='${email}'`)
+        let output = await query(`SELECT * from nodeuser where email='${email}'`)
+        return output[0]
     }
     else {
         return false
@@ -31,20 +34,29 @@ async function userLogin(email, pw) {
 }
 
 async function getPosts(userid) {
+    // console.log("getPosts function hit!")
     let querystring = `select * from getposts where user_id =${userid}`
     let followlist = await query(querystring)
     return followlist
 }
 
 async function createPost(userid,content) {
+    // console.log("createPost function hit!")
     let querystring = `insert into post (user_id,content) values (${userid},'${content}')`
     await query(querystring)
+}
+
+async function getUserById(id) {
+    // console.log("getUserById function hit!")
+    let output = await query(`select * from nodeuser where id = ${id}`)
+    return output[0]
 }
 
 (async () => {
 
     // console.log(await userLogin("aidan.r.christopher@gmail.com","A1dan123"))
+    // console.log(await getUserById(1))
 
 })();
 
-module.exports = {userLogin, getPosts, createPost}
+module.exports = {userLogin, getPosts, createPost, getUserById}
