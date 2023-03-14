@@ -21,4 +21,10 @@ router.post('/login', urlencodedParser, passport.authenticate('local', { failure
     res.redirect('/');
   });
 
+  router.get('/signup', forwardAuthenticated, (req, res) => {
+    // render a view using EJS
+  //   console.log(req.session.messages)
+    res.render('signup',{title:"Sign Up"});
+  });
+
 module.exports = router;
