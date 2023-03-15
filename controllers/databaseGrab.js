@@ -52,10 +52,15 @@ async function getUserById(id) {
     return output[0]
 }
 
-(async () => {
+async function getUserPostsById(id){
+    let posts = await query(`select * from post where user_id = ${id} order by post_id desc`)
+    return posts
+}
 
+(async () => {
     
+
 
 })();
 
-module.exports = {userLogin, getPosts, createPost, getUserById}
+module.exports = {userLogin, getPosts, createPost, getUserById, getUserPostsById}

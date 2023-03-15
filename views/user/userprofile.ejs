@@ -1,0 +1,18 @@
+<body>
+    <h2><%= searchUser.username %></h2>
+    <div class="tweengrid ">
+        <% for (post in searchUser.posts){ %>
+            <div class="tweengriditem rounded ">
+                <a href="/user/<%= searchUser.id %>" id="tweenusername">
+                    <%= searchUser.username %>
+                </a>
+                <p id="tweencontent">
+                    <%= searchUser.posts[post].content %>
+                </p>
+                <p id="tweendate">
+                    <%= searchUser.posts[post].post_date %>
+                </p>
+            </div>
+            <% } %>
+    </div>
+</body>

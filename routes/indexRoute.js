@@ -10,11 +10,11 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 // define a route handler
 router.get('/', ensureAuthenticated, async (req, res) => {
   let posts = await db.getPosts(req.user.id)
-  res.render('index', { posts, title: 'Tween' });
+  res.render('index/index', { posts, title: 'Tween', currentUser:req.user });
 });
 
 router.get('/createpost', ensureAuthenticated, async (req, res) => {
-  res.render('newpost', { title: 'Tween' });
+  res.render('index/newpost', { title: 'Tween', currentUser:req.user });
 });
 
 router.post('/createpost', urlencodedParser, async (req, res) => {

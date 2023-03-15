@@ -7,18 +7,65 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/cover/">
     <link rel="stylesheet" href="/css/bootstrap-css/bootstrap.min.css" type="text/css">
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Chewy" />
     <link rel="icon" href="/images/logo/logo-white-nobackground.png">
 </head>
 
-<body>
+<body class="bg-secondary">
     <header class="mb-auto">
-        <nav class="navbar navbar-light bg-light">
-            <a class="navbar-brand" href="/">
-                <img src="/images/logo/logo-color-nobackground.png" width="50" height="50"
-                    class="d-inline-block align-top" alt="">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark"">
+            <a class=" navbar-brand" href="/">
+            <img src="/images/logo/logo-color-nobackground.png" width="70" height="70" class="d-inline-block align-top"
+                alt="">
             </a>
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/createpost">Create Post</a>
+                </li>
+            </ul>
+
+            <% if (currentUser==undefined){ %>
+                <div class="nav-item dropleft">
+                    <a class="nav-link dropdown-toggle btn btn-outline-primary" href="#" id="navbarDropdownMenuLink"
+                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Login/Signup
+                    </a>
+                    <div class="dropdown-menu">
+                        <form class="px-4 py-3" action="/auth/login" method="POST">
+                            <div class="form-group">
+                                <label for="DropdownFormEmail1">Email address</label>
+                                <input name="email" type="email" class="form-control" id="DropdownFormEmail1"
+                                    placeholder="email@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="DropdownFormPassword1">Password</label>
+                                <input type="password" name="password" class="form-control" id="eDropdownFormPassword1"
+                                    placeholder="Password">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Sign in</button>
+                        </form>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/auth/signup">New around here? Sign up</a>
+                        <a class="dropdown-item" href="#">Forgot password?</a>
+                    </div>
+                </div>
+                <% } else{ %>
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle btn btn-outline-primary" href="#" id="navbarDropdownMenuLink"
+                            role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <%= currentUser.username %>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="/user/<%= currentUser.id %>">Profile</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/auth/logout">Logout</a>
+                        </div>
+                    </div>
+                    <% } %>
         </nav>
     </header>
     <div class="container">
