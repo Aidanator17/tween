@@ -1,0 +1,26 @@
+BACKLOG
+
+AUTH
+- ability to use a username to sign in (as well as the already implemented email sign in option)
+- sign up page
+- change password
+INDEX
+- create post EJS page
+- edit post
+- post comments and replies
+- ability to @ a user (highlight only, no notif)
+- search and follow/unfollow users
+- block users
+USER
+- proper profile screen
+- edit profile button for users visiting their own profile
+ADMIN
+- view all users and their info (maybe by ID? it might be too much to display every user)
+- force follow and unfollow options
+MISC
+- more navbar items
+
+FUTURE IDEAS
+
+INDEX
+- custom chat rooms
