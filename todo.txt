@@ -1,9 +1,9 @@
 BACKLOG
 
 AUTH
-- ability to use a username to sign in (as well as the already implemented email sign in option)
 - sign up page
 - change password
+- fix show password icon on login screen
 INDEX
 - create post EJS page
 - edit post
@@ -16,6 +16,8 @@ USER
 - edit profile button for users visiting their own profile
 ADMIN
 - view all users and their info (maybe by ID? it might be too much to display every user)
+- session manager
+- force kill a session
 - force follow and unfollow options
 MISC
 - more navbar items

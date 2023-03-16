@@ -20,16 +20,29 @@ async function query(q) {
 
 //FUNCTIONS
 
-async function userLogin(email, pw) {
+async function userLogin(identifier, pw) {
     // console.log("userLogin function hit!")
-    let possibleUserHash = await query(`SELECT hash FROM user where email='${email}'`)
-    let isMatch = await bcrypt.compare(pw,possibleUserHash[0].hash)
-    if (isMatch){
-        let output = await query(`SELECT * from nodeuser where email='${email}'`)
-        return output[0]
+    let possibleUserHash = await query(`SELECT hash FROM user where email='${identifier}'`)
+    if (possibleUserHash.length == 0) {
+        possibleUserHash = await query(`SELECT hash FROM user where username='${identifier}'`)
+        let isMatch = await bcrypt.compare(pw,possibleUserHash[0].hash)
+        if (isMatch){
+            let output = await query(`SELECT * from nodeuser where username='${identifier}'`)
+            return output[0]
+        }
+        else {
+            return false
+        }
     }
     else {
-        return false
+        let isMatch = await bcrypt.compare(pw,possibleUserHash[0].hash)
+        if (isMatch){
+            let output = await query(`SELECT * from nodeuser where email='${identifier}'`)
+            return output[0]
+        }
+        else {
+            return false
+        }
     }
 }
 
@@ -59,7 +72,7 @@ async function getUserPostsById(id){
 
 (async () => {
     
-
+    
 
 })();
 
