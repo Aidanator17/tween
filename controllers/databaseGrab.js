@@ -14,7 +14,7 @@ const promisePool = pool.promise();
 
 async function query(q) {
     // console.log("query function hit!")
-    let [rows,fields] = await promisePool.query(q);
+    let [rows, fields] = await promisePool.query(q);
     return rows
 }
 
@@ -25,8 +25,8 @@ async function userLogin(identifier, pw) {
     let possibleUserHash = await query(`SELECT hash FROM user where email='${identifier}'`)
     if (possibleUserHash.length == 0) {
         possibleUserHash = await query(`SELECT hash FROM user where username='${identifier}'`)
-        let isMatch = await bcrypt.compare(pw,possibleUserHash[0].hash)
-        if (isMatch){
+        let isMatch = await bcrypt.compare(pw, possibleUserHash[0].hash)
+        if (isMatch) {
             let output = await query(`SELECT * from nodeuser where username='${identifier}'`)
             return output[0]
         }
@@ -35,8 +35,8 @@ async function userLogin(identifier, pw) {
         }
     }
     else {
-        let isMatch = await bcrypt.compare(pw,possibleUserHash[0].hash)
-        if (isMatch){
+        let isMatch = await bcrypt.compare(pw, possibleUserHash[0].hash)
+        if (isMatch) {
             let output = await query(`SELECT * from nodeuser where email='${identifier}'`)
             return output[0]
         }
@@ -53,7 +53,7 @@ async function getPosts(userid) {
     return followlist
 }
 
-async function createPost(userid,content) {
+async function createPost(userid, content) {
     // console.log("createPost function hit!")
     let querystring = `insert into post (user_id,content) values (${userid},"${content}")`
     await query(querystring)
@@ -65,15 +65,32 @@ async function getUserById(id) {
     return output[0]
 }
 
-async function getUserPostsById(id){
+async function getUserPostsById(id) {
     let posts = await query(`select * from post where user_id = ${id} order by post_id desc`)
     return posts
 }
 
+async function getFollowersAndFollowing(id) {
+    let output = await query(`select * from followersandfollowing where user_id = ${id}`)
+    return output[0]
+}
+
+async function vaultLookup(column,value) {
+    return await query(`select * from user where ${column} = '${value}'`)
+}
+
 (async () => {
-    
+
     
 
 })();
 
-module.exports = {userLogin, getPosts, createPost, getUserById, getUserPostsById}
+module.exports = {
+    userLogin,
+    getPosts,
+    createPost,
+    getUserById,
+    getUserPostsById,
+    getFollowersAndFollowing,
+    vaultLookup
+}

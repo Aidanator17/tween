@@ -32,6 +32,9 @@ app.use('/user', userRouter);
 const authRouter = require('./routes/authRoute');
 app.use('/auth', authRouter);
 
+const adminRouter = require('./routes/adminRoute');
+app.use('/admin', adminRouter);
+
 // app.use((req,res,next)=>{
 //   console.log(req.session)
 //   next()

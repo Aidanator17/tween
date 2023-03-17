@@ -3,13 +3,13 @@
     <div class="tweengrid pt-3">
         <% for (post in posts){ %>
             <div class="tweengriditem rounded ">
-                <a href="/user/<%= posts[post].poster_id %>" id="tweenusername">
+                <a href="/user/<%= posts[post].poster_id %>" class="tweenusername">
                     <%= posts[post].poster_username %>
                 </a>
-                <p id="tweencontent">
+                <p class="tweencontent">
                     <%= posts[post].tween %>
                 </p>
-                <p id="tweendate">
+                <p class="tweendate">
                     <%= posts[post].date %>
                 </p>
             </div>

@@ -1,15 +1,16 @@
 <body>
     <h2><%= searchUser.username %></h2>
+    <p>Followers: <%= searchUser.followers %> Following: <%= searchUser.following %></p>
     <div class="tweengrid ">
         <% for (post in searchUser.posts){ %>
             <div class="tweengriditem rounded ">
-                <a href="/user/<%= searchUser.id %>" id="tweenusername">
+                <a href="/user/<%= searchUser.id %>" class="tweenusername">
                     <%= searchUser.username %>
                 </a>
-                <p id="tweencontent">
+                <p class="tweencontent">
                     <%= searchUser.posts[post].content %>
                 </p>
-                <p id="tweendate">
+                <p class="tweendate">
                     <%= searchUser.posts[post].post_date %>
                 </p>
             </div>

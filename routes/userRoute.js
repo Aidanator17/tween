@@ -12,6 +12,10 @@ router.get('/', ensureAuthenticated, (req, res) => {
 router.get('/:id', ensureAuthenticated, async (req, res) => {
   let searchUser = await db.getUserById(req.params.id)
   searchUser.posts = await db.getUserPostsById(searchUser.id)
+  let followinfo = await db.getFollowersAndFollowing(searchUser.id)
+  searchUser.followers = followinfo.Followers
+  searchUser.following = followinfo.Following
+  // console.log(searchUser)
 
   res.render('user/userprofile', {title:searchUser.username+"'s Profile",currentUser:req.user, searchUser });
 });

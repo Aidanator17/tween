@@ -5,7 +5,7 @@ AUTH
 - change password
 - fix show password icon on login screen
 INDEX
-- create post EJS page
+- "create post" EJS page
 - edit post
 - post comments and replies
 - ability to @ a user (highlight only, no notif)
@@ -15,7 +15,6 @@ USER
 - proper profile screen
 - edit profile button for users visiting their own profile
 ADMIN
-- view all users and their info (maybe by ID? it might be too much to display every user)
 - session manager
 - force kill a session
 - force follow and unfollow options
@@ -26,3 +25,4 @@ FUTURE IDEAS
 
 INDEX
 - custom chat rooms
+- if there is a mutual following, show name instead of username for specific user's tweens

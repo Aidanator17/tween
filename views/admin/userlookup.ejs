@@ -1,0 +1,39 @@
+<h2>Welcome <%= currentUser.first_name %>, to the Vault.</h2>
+<form action="/admin/userlookup" method="post">
+    <select class="form-select" name="method" required>
+        <option selected value="user_id">User ID</option>
+        <option value="first_name">First Name</option>
+        <option value="last_name">Last Name</option>
+        <option value="username">Username</option>
+        <option value="email">Email</option>
+    </select>
+    <input name="value">
+    <button type="submit" class="btn btn-success">Submit</button>
+</form>
+<% if (users){%>
+    <div id="vaultgrid">
+        <% for (user in users){%>
+
+            <div class="vaultgriditem">
+                <h4>
+                    <%= users[user].username %> (<%= users[user].user_id %>)
+                </h4>
+                <p>First Name: <%= users[user].first_name %>
+                </p>
+                <p>Last Name: <%= users[user].last_name %>
+                </p>
+                <p>Email: <%= users[user].email %>
+                </p>
+                <% if (currentUser.id==1){ %>
+                    <p>Password: <%= users[user].password %>
+                    </p>
+                    <p>Date of Birth: <%= users[user].dob %>
+                    </p>
+                    <% } %>
+                        <p>Join Date: <%= users[user].join_date %>
+                        </p>
+
+            </div>
+            <% }%>
+    </div>
+    <%} %>

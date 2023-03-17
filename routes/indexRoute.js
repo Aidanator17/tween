@@ -2,10 +2,9 @@ const express = require('express');
 const router = express.Router();
 const db = require('../controllers/databaseGrab')
 var bodyParser = require('body-parser')
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
 const { ensureAuthenticated, ensureAdmin } = require("../middleware/checkAuth");
 
-var jsonParser = bodyParser.json()
-var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 // define a route handler
 router.get('/', ensureAuthenticated, async (req, res) => {
